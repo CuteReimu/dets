@@ -6,7 +6,7 @@
 
 基于 [dgraph-io/badger](https://github.com/dgraph-io/badger) 做的内嵌式key-value型数据库的**接口封装**。
 
-因为仅仅是**接口封装**，所以**对于同一个key，不支持并发**。想要支持并发，请直接使用[dgraph-io/badger](https://github.com/dgraph-io/badger)
+因为仅仅是**接口封装**，所以**对于同一个key，不支持并发**。想要支持并发，请直接使用 [dgraph-io/badger](https://github.com/dgraph-io/badger)
 
 ## 安装
 
@@ -26,10 +26,10 @@ import (
 
 func main() {
     dets.Start("temp")
-	key := []byte("aaa")
-	dets.Put(key, "vvv")
+    key := []byte("aaa")
+    dets.Put(key, "vvv")
     s := dets.GetString(key)
-	dets.Del(key)
+    dets.Del(key)
     fmt.Println(s)
     dets.Stop()
 }
