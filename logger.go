@@ -13,4 +13,4 @@ func (l *defaultLogger) Error(v ...interface{}) {
 	log.Println(v...)
 }
 
-var logger LogInterface
+var logger LogInterface = &defaultLogger{}

@@ -12,15 +12,16 @@ import (
 var db *badger.DB
 
 // SetDB 用以和dgraph-io/badge配合使用
-func SetDB(d *badger.DB) {
+func SetDB(d *badger.DB, l ...LogInterface) {
+	if len(l) != 0 && l[0] != nil {
+		logger = l[0]
+	}
 	db = d
 }
 
 // Start 启动数据库
 func Start(path string, l ...LogInterface) {
-	if len(l) == 0 || l[0] == nil {
-		logger = &defaultLogger{}
-	} else {
+	if len(l) != 0 && l[0] != nil {
 		logger = l[0]
 	}
 	var err error
