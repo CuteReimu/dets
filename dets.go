@@ -2,7 +2,7 @@ package dets
 
 import (
 	"fmt"
-	"github.com/dgraph-io/badger"
+	"github.com/dgraph-io/badger/v3"
 	"github.com/pkg/errors"
 	"github.com/spf13/cast"
 	"time"
