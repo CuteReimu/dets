@@ -1,6 +1,7 @@
 package dets
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/dgraph-io/badger/v3"
 	"github.com/pkg/errors"
@@ -69,9 +70,26 @@ func Get(key []byte) []byte {
 
 // Put 设置键值。你可以指定一个超时时间。
 func Put(key []byte, value interface{}, ttl ...time.Duration) {
-	v, ok := value.([]byte)
-	if !ok {
-		v = []byte(cast.ToString(v))
+	var v []byte
+	switch e := value.(type) {
+	case []byte:
+		v = e
+	case []int:
+		v, _ = json.Marshal(e)
+	case []string:
+		v, _ = json.Marshal(e)
+	case map[string]map[string]string:
+		v, _ = json.Marshal(e)
+	case map[string]string:
+		v, _ = json.Marshal(e)
+	case map[string][]string:
+		v, _ = json.Marshal(e)
+	default:
+		s, err := cast.ToStringE(value)
+		if err != nil {
+			panic(err)
+		}
+		v = []byte(s)
 	}
 	err := db.Update(func(txn *badger.Txn) error {
 		e := badger.NewEntry(key, v)
@@ -145,11 +163,6 @@ func GetFloat64(key []byte) float64 {
 	return cast.ToFloat64(GetString(key))
 }
 
-// GetTime returns the value associated with the key as time.
-func GetTime(key []byte) time.Time {
-	return cast.ToTime(GetString(key))
-}
-
 // GetDuration returns the value associated with the key as a duration.
 func GetDuration(key []byte) time.Duration {
 	return cast.ToDuration(GetString(key))
@@ -157,21 +170,20 @@ func GetDuration(key []byte) time.Duration {
 
 // GetIntSlice returns the value associated with the key as a slice of int values.
 func GetIntSlice(key []byte) []int {
-	return cast.ToIntSlice(GetString(key))
+	var s []int
+	_ = json.Unmarshal(Get(key), &s)
+	return s
 }
 
 // GetStringSlice returns the value associated with the key as a slice of strings.
 func GetStringSlice(key []byte) []string {
-	return cast.ToStringSlice(GetString(key))
+	var s []string
+	_ = json.Unmarshal(Get(key), &s)
+	return s
 }
 
-// GetStringMap returns the value associated with the key as a map of interfaces.
-func GetStringMap(key []byte) map[string]interface{} {
-	return cast.ToStringMap(GetString(key))
-}
-
-// GetStringMapString returns the value associated with the key as a map of strings.
-func GetStringMapString(key []byte) map[string]string {
+// GetStringMap returns the value associated with the key as a map of strings.
+func GetStringMap(key []byte) map[string]string {
 	return cast.ToStringMapString(GetString(key))
 }
 

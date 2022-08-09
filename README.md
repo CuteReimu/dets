@@ -39,22 +39,20 @@ func main() {
 
 `Put`和`Del`函数统一使用，`Get`用了不同的函数名
 
-| 支持的value类型               | 对应`Get`函数名                | 
-|--------------------------|---------------------------|
-| `[]byte`                 | `Get`                     |
-| `string`                 | `GetString`               |
-| `bool`                   | `GetBool`                 |
-| `int`                    | `GetInt`                  |
-| `int32`                  | `GetInt32`                |
-| `int64`                  | `GetInt64`                |
-| `uint`                   | `GetUint`                 |
-| `uint32`                 | `GetUint32`               |
-| `uint64`                 | `GetUint64`               |
-| `float64`                | `GetFloat64`              |
-| `time.Time`              | `GetTime`                 |
-| `time.Duration`          | `GetDuration`             |
-| `[]int`                  | `GetIntSlice`             |
-| `[]string`               | `GetStringSlice`          |
-| `map[string]interface{}` | `GetStringMap`            |
-| `map[string]string`      | `GetStringMapString`      |
-| `map[string][]string`    | `GetStringMapStringSlice` |
+| 支持的value类型            | 对应`Get`函数名                | 
+|-----------------------|---------------------------|
+| `[]byte`              | `Get`                     |
+| `string`              | `GetString`               |
+| `bool`                | `GetBool`                 |
+| `int`                 | `GetInt`                  |
+| `int32`               | `GetInt32`                |
+| `int64`               | `GetInt64`                |
+| `uint`                | `GetUint`                 |
+| `uint32`              | `GetUint32`               |
+| `uint64`              | `GetUint64`               |
+| `float64`             | `GetFloat64`              |
+| `time.Duration`       | `GetDuration`             |
+| `[]int`               | `GetIntSlice`             |
+| `[]string`            | `GetStringSlice`          |
+| `map[string]string`   | `GetStringMap`            |
+| `map[string][]string` | `GetStringMapStringSlice` |
