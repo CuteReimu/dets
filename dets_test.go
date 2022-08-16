@@ -19,6 +19,7 @@ func TestAll(t *testing.T) {
 	testUint32(t)
 	testUint64(t)
 	testFloat64(t)
+	testTime(t)
 	testDuration(t)
 	testIntSlice(t)
 	testStringSlice(t)
@@ -114,6 +115,15 @@ func testFloat64(t *testing.T) {
 	f2 := GetFloat64([]byte("float"))
 	if f != f2 {
 		t.Errorf("f: %f, f2: %f", f, f2)
+	}
+}
+
+func testTime(t *testing.T) {
+	time1, _ := time.Parse("2006-01-02 15:04:05.999999", "2022-08-01 01:02:03.456789")
+	Put([]byte("time"), time1)
+	time2 := GetTime([]byte("time"))
+	if !time1.Equal(time2) {
+		t.Errorf("time1: %v, time2: %v", time1, time2)
 	}
 }
 

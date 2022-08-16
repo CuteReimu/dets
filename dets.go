@@ -73,6 +73,8 @@ func Get(key []byte) []byte {
 func Put(key []byte, value interface{}, ttl ...time.Duration) {
 	var v []byte
 	switch e := value.(type) {
+	case time.Time:
+		v, _ = e.MarshalBinary()
 	case []byte:
 		v = e
 	case []int:
@@ -162,6 +164,16 @@ func GetUint64(key []byte) uint64 {
 // GetFloat64 returns the value associated with the key as a float64.
 func GetFloat64(key []byte) float64 {
 	return cast.ToFloat64(GetString(key))
+}
+
+// GetTime 需要注意，使用time.Now()返回的time.Time包含Wall Clock和Monotonic Clock。
+// 在Marshal之后，Monotonic Clock部分会被丢弃，所以在Unmarshal之后和原来的并不完全相同。
+//
+// 在一般业务场景下，存储时间戳的精度其实就足够了。
+func GetTime(key []byte) time.Time {
+	t := time.Time{}
+	_ = (&t).UnmarshalBinary(Get(key))
+	return t
 }
 
 // GetDuration returns the value associated with the key as a duration.
