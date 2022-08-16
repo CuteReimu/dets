@@ -51,6 +51,7 @@ func main() {
 | `uint32`              | `GetUint32`               |
 | `uint64`              | `GetUint64`               |
 | `float64`             | `GetFloat64`              |
+| `time.Time`           | `GetTime`                 |
 | `time.Duration`       | `GetDuration`             |
 | `[]int`               | `GetIntSlice`             |
 | `[]string`            | `GetStringSlice`          |
