@@ -3,7 +3,7 @@ module github.com/CuteReimu/dets
 go 1.18
 
 require (
-	github.com/dgraph-io/badger/v3 v3.2103.3
+	github.com/dgraph-io/badger/v3 v3.2103.4
 	github.com/pkg/errors v0.9.1
 	github.com/spf13/cast v1.5.0
 )
