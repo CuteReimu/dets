@@ -1,7 +1,7 @@
 # dets
 
 ![](https://img.shields.io/github/languages/top/CuteReimu/dets "语言")
-[![](https://img.shields.io/github/workflow/status/CuteReimu/dets/Go)](https://github.com/CuteReimu/dets/actions/workflows/golangci-lint.yml "代码分析")
+[![](https://img.shields.io/github/actions/workflow/status/CuteReimu/dets/golangci-lint.yml?branch=master)](https://github.com/CuteReimu/dets/actions/workflows/golangci-lint.yml "代码分析")
 [![](https://img.shields.io/github/license/CuteReimu/dets)](https://github.com/CuteReimu/dets/blob/master/LICENSE "许可协议")
 
 基于 [dgraph-io/badger](https://github.com/dgraph-io/badger) 做的内嵌式key-value型数据库的**接口封装**。
