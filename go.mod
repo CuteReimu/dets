@@ -1,6 +1,6 @@
 module github.com/CuteReimu/dets
 
-go 1.18
+go 1.20
 
 require (
 	github.com/dgraph-io/badger/v3 v3.2103.5
