@@ -3,7 +3,7 @@ package dets
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/dgraph-io/badger/v3"
+	"github.com/dgraph-io/badger/v4"
 	"github.com/pkg/errors"
 	"github.com/spf13/cast"
 	"time"
@@ -54,7 +54,7 @@ func Get(key []byte) []byte {
 	var value []byte
 	err := db.View(func(txn *badger.Txn) error {
 		item, err := txn.Get(key)
-		if err == badger.ErrKeyNotFound {
+		if errors.Is(err, badger.ErrKeyNotFound) {
 			return nil
 		} else if err != nil {
 			return errors.WithStack(err)
