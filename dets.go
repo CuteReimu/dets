@@ -27,7 +27,7 @@ func Start(path string, l ...LogInterface) {
 	var err error
 	db, err = badger.Open(badger.DefaultOptions(path))
 	if err != nil {
-		logger.Error(err)
+		logger.Error("启动数据库失败", "error", err)
 		panic(err)
 	}
 	go gc()

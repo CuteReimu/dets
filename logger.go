@@ -1,16 +1,18 @@
 package dets
 
-import "log"
+import (
+	"log/slog"
+)
 
 type LogInterface interface {
-	Error(v ...interface{})
+	Error(msg string, args ...any)
 }
 
 type defaultLogger struct {
 }
 
-func (l *defaultLogger) Error(v ...interface{}) {
-	log.Println(v...)
+func (l *defaultLogger) Error(msg string, args ...any) {
+	slog.Error(msg, args...)
 }
 
 var logger LogInterface = &defaultLogger{}
