@@ -20,7 +20,7 @@ require (
 	github.com/google/flatbuffers v24.3.7+incompatible // indirect
 	github.com/klauspost/compress v1.17.7 // indirect
 	go.opencensus.io v0.24.0 // indirect
-	golang.org/x/net v0.22.0 // indirect
+	golang.org/x/net v0.23.0 // indirect
 	golang.org/x/sys v0.18.0 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 )
