@@ -7,7 +7,7 @@ toolchain go1.23.6
 require (
 	github.com/dgraph-io/badger/v4 v4.7.0
 	github.com/pkg/errors v0.9.1
-	github.com/spf13/cast v1.7.1
+	github.com/spf13/cast v1.8.0
 )
 
 require (
